@@ -51,7 +51,7 @@ Thumbs.db
 # Eclipse project files
 .classpath
 .project
-
+.settings
 # Other
 gradle.properties
 .gradle
