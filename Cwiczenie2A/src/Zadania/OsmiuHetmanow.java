@@ -5,6 +5,8 @@ public class OsmiuHetmanow {
 	private int MAKS_LICZBA_HETMANOW = 8;
 	private boolean[][] szachownica;
 	private int liczbaUstawHetmanow;
+	private int liczbaRozwiazan = 0;
+	private StringBuilder rozwiazania;
 	
 	public void stworz(int wymiar){
 		
@@ -16,6 +18,7 @@ public class OsmiuHetmanow {
 			}
 		}
 		liczbaUstawHetmanow = 0;
+		rozwiazania = new StringBuilder();
 		ustawHetmanow();
 		
 	}
@@ -24,43 +27,60 @@ public class OsmiuHetmanow {
 		boolean ret;
 		ret = ustawHetmana(0,0,0);
 	
-		if(ret){
-			System.out.println("Udalo sie rozwiazc problem");
+		if(ret || liczbaRozwiazan>0){
+			System.out.println("Udalo sie rozwiazc problem, liczba rozwiazan: "+liczbaRozwiazan);
 		}else{
 			System.out.println("Nie udalo sie rozwiazac problemu");
 		}
 	}
 
-	private boolean ustawHetmana(int i, int j,int zagl) {
-		System.out.println("Pozycja x: "+i+",Pozycja y:"+j+",Zaglebienie: "+zagl);
-
+	private boolean ustawHetmana(int wiersz, int kolumna,int zagl) {
+		boolean war;
+		
+		System.out.println("Pozycja x: "+wiersz+",Pozycja y:"+kolumna+",Zaglebienie: "+zagl);
+		
 		if(liczbaUstawHetmanow==MAKS_LICZBA_HETMANOW ){
 			System.out.println("Wszyscy hetmani sa ustawieni");
 			System.out.println("Kombinacja:");
 			System.out.println(this);
-			return true;
+			liczbaRozwiazan++;
+			rozwiazania.append("Rozwiazanie "+liczbaRozwiazan+":\n");
+			rozwiazania.append(this);
+			rozwiazania.append('\n');
+			return false;
 		}
 		
-		if(i>MAKS_LICZBA_HETMANOW-1){
+		if(wiersz>MAKS_LICZBA_HETMANOW-1){
 			System.out.println("Przekroczona lista wierszy");
 			return false;
 		}
 		
-		if (j>MAKS_LICZBA_HETMANOW-1){
+		if (kolumna>MAKS_LICZBA_HETMANOW-1){
 			System.out.println("Przekroczona lista kolumn");
 			return false;
 		}
-			
-		if(sprawdzHetmana(i,j)){
-			szachownica[i][j] = true;
-			liczbaUstawHetmanow++;
-			//ustaw hetmana w kolejnej linijce
-			System.out.println("Ustaw hetmana w kolejnej linijce");
-			return ustawHetmana(i+1, 0, zagl+1);
-		}else{
-			//ustaw hetmana w kolejnej kolumnie tej samej linijki
-			return ustawHetmana(i, j+1, zagl+1);
+
+		for (int i = 0; i < szachownica[0].length; i++) {
+			war = sprawdzHetmana(wiersz, i);
+			if (war == true){
+				szachownica[wiersz][i] = true;
+				liczbaUstawHetmanow++;
+				System.out.println("Usatawia hetmana na pozycji x: "+wiersz+" y: "+i+" zagl:"+zagl);
+				war = ustawHetmana(wiersz+1, 0, zagl+1);
+				if(war){
+					return true;
+				}else{
+					szachownica[wiersz][i] = false;
+					liczbaUstawHetmanow--;
+					System.out.println("Usuwa hetmana na pozycji x: "+wiersz+" y: "+i+" zagl:"+zagl);
+					continue;
+				}
+			}else{
+				continue;
+			}
 		}
+
+		return false;
 	}
 
 	private boolean sprawdzHetmana(int i, int j) {
@@ -124,6 +144,10 @@ public class OsmiuHetmanow {
 		}
 		
 		return str.toString();
+	}
+
+	public String getRozwiazania() {
+		return rozwiazania.toString();
 	}
 
 }

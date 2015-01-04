@@ -8,8 +8,7 @@ public class Test {
 	public static void main(String[] args) {
 		OsmiuHetmanow het = new OsmiuHetmanow();
 		het.stworz(8);
-		System.out.println(het);
-
+		System.out.println(het.getRozwiazania());
 	}
 
 }
