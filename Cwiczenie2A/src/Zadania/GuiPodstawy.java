@@ -2,32 +2,66 @@ package Zadania;
 
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 
 public class GuiPodstawy extends JFrame {
 	
-	private static final Dimension ROZMIAR_OKNA = new Dimension(300,200);
-
+	private static final Dimension MIN_ROZMIAR_OKNA = new Dimension(300,200);
+	private static final Dimension ROZMIAR_OKNA = new Dimension(600,400);
+	
 	public GuiPodstawy() {
 		super("Moje pierwsze okno");
 		setSize(ROZMIAR_OKNA);
-		setMinimumSize(ROZMIAR_OKNA);
+		setMinimumSize(MIN_ROZMIAR_OKNA);
 		//setUndecorated(true);
 		//setOpacity(0.5f);
 		setLocationRelativeTo(null);
 		
+		final JTextField text = new JTextField();
+		text.setBounds(50, 100, 250, 30);
 		
-		
-		
-		
+		final JCheckBox check = new JCheckBox("Czy jest fajny?");
+
 		JButton button = new JButton("Nacisnij mnie");
 		
 		Container ekran = getContentPane();
 		setLayout(null);
 		button.setBounds(50, 50, 200, 40);
+		
+		ekran.add(text);
 		ekran.add(button);
+		
+		ActionListener buttonListener = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String t = text.getText();
+				text.setText(t+ "*");
+				
+			}
+		};
+		
+		ActionListener buttonListener2 = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String t = text.getText();
+				text.setText(t+ ":-)");
+				
+			}
+		};
+		
+		
+		
+		button.addActionListener(buttonListener);
+		button.addActionListener(buttonListener2);
 		
 	}
 	
