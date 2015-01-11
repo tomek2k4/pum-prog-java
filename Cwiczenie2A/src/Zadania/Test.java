@@ -1,18 +1,33 @@
 package Zadania;
 
+import java.util.Scanner;
+
 public class Test {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Kolejka k = new Kolejka();
-		k.enqueue("Hello,");
-		k.enqueue("World");
-		k.enqueue(" Tomek");
-
-		System.out.println(k.last());
-		System.out.println(k.dequeue());
+		
+//	    Scanner input = new Scanner(System.in);
+//	    System.out.println("Podaj Liczbe dziesietna");
+//	    String wyr = input.nextLine();
+//	    
+//	    ZamianaSystemowLiczbowych systemLiczb = new ZamianaSystemowLiczbowych(wyr);
+//	    
+//	    
+	    System.out.println(ZamianaSystemowLiczbowych.symbolCyfry(10, 0));
+	    
+//	    
+//	    
+//	    
+//	    
+//	    System.out.println(systemLiczb.zamienNaDziesietne());
+//	
+//	    input.close();
+		
+	
+		
 	}
 
 }
