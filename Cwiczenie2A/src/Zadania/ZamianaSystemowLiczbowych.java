@@ -1,45 +1,35 @@
 package Zadania;
 
 public class ZamianaSystemowLiczbowych {
+	
+	public static void main(String[] args) {
+        long liczba = -15879199808L;
 
-	private String liczbaStr;
-	private Integer liczba;
-	private int system = 2;
-	
-	
-	public ZamianaSystemowLiczbowych(String liczba) {
-       this.liczbaStr  = liczba;
-       System.out.println("Wpisana liczba w systemie dwojkowym: "+ liczba);
-       
-       this.liczba = Integer.parseInt(this.liczbaStr);
+        System.out.println("(10): " + liczba);
+        System.out.println("(2): " + dec2other(liczba, 2));
+        System.out.println("(4): " + dec2other(liczba, 4));
+        System.out.println("(8): " + dec2other(liczba, 8));
+        System.out.println("(16): " + dec2other(liczba, 16));
+        System.out.println("(3): " + dec2other(liczba, 3));
+        System.out.println("(9): " + dec2other(liczba, 9));
+        System.out.println("(27): " + dec2other(liczba, 27));
+
 	}
 	
-	
-	public String zamienNaDziesietne(){
-		int i=1;
-		int x = 0;
-		StringBuilder strBuild = new StringBuilder();
-		String accum;
+	public static String dec2other(long n,int podstawa){
+		return null;
 		
-		while(i<liczbaStr.length()){
-		 //take smallest
-		  x = x + (liczba/i) % system * 2^(i-1);
-		}
-
-		System.out.println("Liczba dziesietna: " + x);
-		
-		return liczbaStr;
 	}
 	
-	public static String symbolCyfry(int liczba,int podstawa){
-		int x;
-		if(liczba<10){
-			return Character.toString( (char)('0'+liczba) );
-		}else{
-			return Character.toString( (char)('A'+liczba-10 ) );
-		}
-
-	}
+	
+    private static String symbolCyfry(int wartosc, int podstawa) {
+        if (wartosc < 10) {
+            return Character.toString((char) ('0' + wartosc));
+        } else {
+            //return "[" + wartosc + "]";
+            return Character.toString((char) ('A' + wartosc - 10));
+        }
+    }
 	
 	
 }
