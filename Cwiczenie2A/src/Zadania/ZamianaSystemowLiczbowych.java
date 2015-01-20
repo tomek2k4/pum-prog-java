@@ -16,8 +16,10 @@ public class ZamianaSystemowLiczbowych {
 //        System.out.println("(3): " + dec2other(liczba, 3));
 //        System.out.println("(9): " + dec2other(liczba, 9));
 //        System.out.println("(27): " + dec2other(liczba, 27));
-        System.out.println("(ROMAN): " + dec2roman(liczba));
+//        System.out.println("(ROMAN): " + dec2roman(liczba));
 
+        RomanNumerals.getString(1);
+        
 	}
 	
 	public static String dec2other(long n,int podstawa){
@@ -25,7 +27,7 @@ public class ZamianaSystemowLiczbowych {
 		if(podstawa<2 && podstawa>30){
 			throw new IllegalArgumentException("Niepoprawna podstawa systemu: "+podstawa);
 		}
-
+		
 		if (n==0){
 			return "0";
 		}
@@ -50,10 +52,7 @@ public class ZamianaSystemowLiczbowych {
 	
 	public static String dec2roman(long n){
 		
-//		while(n>0){
-//			
-//		}
-		
+
 
 		return RomanNumerals.getTypeName(RomanNumerals.fromInt((int)n));
 	}
@@ -66,8 +65,7 @@ public class ZamianaSystemowLiczbowych {
 		L(50),
 		C(100),
 		D(500),
-		M(1000),
-		UNKNOWN_NUMERAL(-1);
+		M(1000);
 		
 		private int value;
 	    
@@ -83,11 +81,34 @@ public class ZamianaSystemowLiczbowych {
 	        }
 	    }
 		
+	    public static String getString(int n) {
+
+	    	int rest;
+	    	
+	    	for(int i = RomanNumerals.values().length - 1; i>=0;i--){
+	    		RomanNumerals e = RomanNumerals.values()[i];	
+	    		rest = n % e.getValue();
+	    		if(rest != 0){
+	    			continue;
+	    		}else{
+	    			int iloraz = n / e.getValue();
+	    			if(iloraz<=3){
+	    				
+	    			}
+	    			
+	    		}
+	    		
+	    		
+	    		System.out.println(RomanNumerals.getTypeName(e));	
+	    	}
+	    	
+	    	return null;
+	    }
+	    
+	    
 	    public static RomanNumerals fromInt(int i) {
 	    	RomanNumerals type = intToTypeMap.get(Integer.valueOf(i));
-	    	
-	        if (type == null) 
-	            return RomanNumerals.UNKNOWN_NUMERAL;
+
 	        return type;
 	    }
 	    
