@@ -16,7 +16,7 @@ public class Test {
 //	    ZamianaSystemowLiczbowych systemLiczb = new ZamianaSystemowLiczbowych(wyr);
 //	    
 //	    
-	    System.out.println(ZamianaSystemowLiczbowych.symbolCyfry(10, 0));
+//	    System.out.println(ZamianaSystemowLiczbowych.symbolCyfry(10, 0));
 	    
 //	    
 //	    
